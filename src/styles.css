@@ -41,8 +41,20 @@ body {
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 0.2rem;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #818384;
+  letter-spacing: 0.1rem;
   margin-bottom: 20px;
-  color: #ffffff;
+  text-transform: uppercase;
 }
 
 .game-over {
@@ -50,10 +62,13 @@ body {
 }
 
 .win-message {
-  font-size: 1.5rem;
-  color: #6aaa64;
-  margin-bottom: 15px;
-  font-weight: 600;
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .lose-message {
@@ -67,20 +82,70 @@ body {
   text-transform: uppercase;
 }
 
+.win-section,
+.lose-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.energy-word-reveal {
+  background: linear-gradient(145deg, #1a1a1b 0%, #2a2a2b 100%);
+  border: 2px solid #fbbf24;
+  border-radius: 12px;
+  padding: 20px 25px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(251, 191, 36, 0.15);
+}
+
+.revealed-word {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.3rem;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+
+.energy-definition {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #d1d5db;
+  text-align: left;
+  padding: 12px 15px;
+  background: rgba(251, 191, 36, 0.08);
+  border-left: 3px solid #fbbf24;
+  border-radius: 0 8px 8px 0;
+  margin-top: 10px;
+}
+
+.lose-section .energy-definition {
+  max-width: 350px;
+  margin-top: 5px;
+}
+
 .reset-button {
-  background-color: #6aaa64;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 14px 28px;
   font-size: 1rem;
   font-weight: 600;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+  margin-top: 10px;
 }
 
 .reset-button:hover {
-  background-color: #5a9954;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
 }
 
 .wordle-board {
@@ -118,8 +183,8 @@ body {
 }
 
 .wordle-cell.correct {
-  background-color: #6aaa64;
-  border-color: #6aaa64;
+  background-color: #f59e0b;
+  border-color: #f59e0b;
   color: #ffffff;
 }
 
@@ -175,7 +240,7 @@ body {
 }
 
 .key.correct {
-  background-color: #6aaa64;
+  background-color: #f59e0b;
 }
 
 .key.present {
@@ -207,6 +272,28 @@ body {
   }
 
   .wordle-header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
+  }
+
+  .energy-word-reveal {
+    padding: 15px 18px;
+    max-width: 320px;
+  }
+
+  .revealed-word {
+    font-size: 1.5rem;
+  }
+
+  .energy-definition {
+    font-size: 0.85rem;
+    padding: 10px 12px;
+  }
+
+  .lose-section .energy-definition {
+    max-width: 280px;
   }
 }

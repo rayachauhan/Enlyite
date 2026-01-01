@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import WordleRow from './WordleRow'
 import Keyboard from './Keyboard'
-import { WORDS, VALID_GUESSES } from './words'
+import { ENERGY_WORDS, VALID_GUESSES } from './words'
+
+// Get array of energy word keys for random selection
+const ENERGY_WORD_LIST = Object.keys(ENERGY_WORDS)
 
 const WORD_LENGTH = 5
 const MAX_GUESSES = 6
@@ -14,9 +17,9 @@ function Wordle() {
   const [gameState, setGameState] = useState('playing') // 'playing', 'won', 'lost'
   const [letterStates, setLetterStates] = useState({}) // Track letter colors for keyboard
 
-  // Initialize target word on mount
+  // Initialize target word on mount (randomly pick from energy words)
   useEffect(() => {
-    const randomWord = WORDS[Math.floor(Math.random() * WORDS.length)]
+    const randomWord = ENERGY_WORD_LIST[Math.floor(Math.random() * ENERGY_WORD_LIST.length)]
     setTargetWord(randomWord)
   }, [])
 
@@ -104,7 +107,7 @@ function Wordle() {
   }, [currentGuess, currentRow, gameState, targetWord, guesses, letterStates])
 
   const resetGame = () => {
-    const randomWord = WORDS[Math.floor(Math.random() * WORDS.length)]
+    const randomWord = ENERGY_WORD_LIST[Math.floor(Math.random() * ENERGY_WORD_LIST.length)]
     setTargetWord(randomWord)
     setGuesses(Array(MAX_GUESSES).fill(''))
     setCurrentGuess('')
@@ -167,15 +170,25 @@ function Wordle() {
   return (
     <div className="wordle-container">
       <div className="wordle-header">
-        <h1>WORDLE</h1>
+        <h1>⚡ ENLYITLE ⚡</h1>
+        <p className="subtitle">The Energy Word Game</p>
         {gameState !== 'playing' && (
           <div className="game-over">
             {gameState === 'won' ? (
-              <p className="win-message">🎉 You Won!</p>
+              <div className="win-section">
+                <p className="win-message">🎉 You Got It!</p>
+                <div className="energy-word-reveal">
+                  <h2 className="revealed-word">{targetWord}</h2>
+                  <p className="energy-definition">{ENERGY_WORDS[targetWord]}</p>
+                </div>
+              </div>
             ) : (
-              <p className="lose-message">
-                Game Over! The word was: <strong>{targetWord}</strong>
-              </p>
+              <div className="lose-section">
+                <p className="lose-message">
+                  Game Over! The word was: <strong>{targetWord}</strong>
+                </p>
+                <p className="energy-definition">{ENERGY_WORDS[targetWord]}</p>
+              </div>
             )}
             <button onClick={resetGame} className="reset-button">
               New Game
